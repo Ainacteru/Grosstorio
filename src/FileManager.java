@@ -13,25 +13,24 @@ public class FileManager {
         }
     }
 
+    public void ReplaceSplash(Path newSplash, Path SplashToReplace) {
+        Path _newSplash = newSplash;
+        Path _newSplashCopy = newSplash.getParent().resolve("splash-screen-image.png"); // default name of factorio splash screen
 
-    //rename default then move and name the custom what the default use to be
-    public void ReplaceSplash() {
-        Path customSplash = Filepaths.GROSSTORIO_SPLASH_SCREEN_PATH;
-        Path customSplashCopy = Filepaths.GROSSTORIO_SPLASH_SCREEN_PATH.getParent().resolve("splash-screen-image.png");
-        Path defaultSplash = Filepaths.FACTORIO_SPLASH_SCREEN_PATH;
-        Path defaultSplashCopy   = Filepaths.FACTORIO_SPLASH_SCREEN_PATH.getParent().resolve("splash-screen-image-default-copy.png");
+        Path _splashToReplace = SplashToReplace;
+        Path _splashToReplace_copy = SplashToReplace.getParent().resolve("splash-screen-image-default-copy.png");
 
         try {
-            Files.copy(customSplash, customSplashCopy, StandardCopyOption.REPLACE_EXISTING);
-            Files.copy(defaultSplash, defaultSplashCopy, StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(_newSplash, _newSplashCopy, StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(_splashToReplace, _splashToReplace_copy, StandardCopyOption.REPLACE_EXISTING);
 
-            System.out.println("Made a copy of " + customSplash + "and made a backup of " + defaultSplash);
+            System.out.println("Made a copy of " + _newSplash + "and made a backup of " + _splashToReplace);
             System.out.println();
 
-            Files.createDirectories(defaultSplash.getParent());
-            Files.move(customSplashCopy, defaultSplash, StandardCopyOption.REPLACE_EXISTING);
+            Files.createDirectories(_splashToReplace.getParent());
+            Files.move(_newSplashCopy, _splashToReplace, StandardCopyOption.REPLACE_EXISTING);
 
-            System.out.println("Replaced original splash with " + customSplashCopy);
+            System.out.println("Replaced original splash with " + _newSplashCopy);
             System.out.println();
 
         } catch (IOException ex) {

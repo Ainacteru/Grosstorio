@@ -12,7 +12,7 @@ public class Main {
     }
 
     private void Run() {
-        fileManager.ReplaceSplash();
+        fileManager.ReplaceSplash(Filepaths.GROSSTORIO_SPLASH_SCREEN_PATH, Filepaths.FACTORIO_SPLASH_SCREEN_PATH);
     }
 
 }
