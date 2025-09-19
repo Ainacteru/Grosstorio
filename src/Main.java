@@ -12,7 +12,7 @@ public class Main {
     }
 
     private void Run() {
-        fileManager.FindFiles();
+        fileManager.ReplaceSplash();
     }
 
 }
