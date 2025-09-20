@@ -8,8 +8,11 @@ public class Filepaths {
 
     // home/Gary/Applications/Games/Factorio/data/core/graphics/splash-screen-image.png 
     // my file location
-    public static Path FACTORIO_SPLASH_SCREEN_PATH = Paths.get(System.getProperty("user.dir")).getParent().resolve("factorio").resolve("data").resolve("core").resolve("graphics").resolve("splash-screen-image.png");
+    public static final Path FACTORIO_SPLASH_SCREEN_PATH = Paths.get(System.getProperty("user.dir")).getParent().resolve("factorio").resolve("data").resolve("core").resolve("graphics").resolve("splash-screen-image.png");
     // Paths.get(FACTORIO_PATH).resolve("data").resolve("core").resolve("graphics").resolve("splash-screen-image.png");
+
+    public static final Path FACTORIO_SPLASH_SCREEN_PATH_COPY = Paths.get(System.getProperty("user.dir")).getParent().resolve("factorio").resolve("data").resolve("core").resolve("graphics").resolve("splash-screen-image-default-copy.png");
+
 
     public static boolean splashExists() {
         return Files.exists(GROSSTORIO_SPLASH_SCREEN_PATH);

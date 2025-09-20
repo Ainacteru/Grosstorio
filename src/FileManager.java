@@ -36,6 +36,16 @@ public class FileManager {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
 
+    //replace the splash screen, then delete it -- i could also just mv it to rename it and replace it but i'll do this for simplicity
+    public void RevertToDefaultSplash() {
+        ReplaceSplash(Filepaths.FACTORIO_SPLASH_SCREEN_PATH_COPY, Filepaths.FACTORIO_SPLASH_SCREEN_PATH);
+
+        try {
+            Files.delete(Filepaths.FACTORIO_SPLASH_SCREEN_PATH_COPY);
+            
+        } catch (IOException ex) {
+        }
     }
 }
