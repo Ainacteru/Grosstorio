@@ -12,19 +12,21 @@ public class Main {
     }
 
     private void Run() {
+
+        Filepaths.start();
         
-        System.out.println("replacing original splash with custom one");
+        // System.out.println("replacing original splash with custom one");
 
-        fileManager.ReplaceSplash(Filepaths.GROSSTORIO_SPLASH_SCREEN_PATH, Filepaths.FACTORIO_SPLASH_SCREEN_PATH);
+        // fileManager.ReplaceSplash(Filepaths.GROSSTORIO_SPLASH_SCREEN_PATH, Filepaths.FACTORIO_SPLASH_SCREEN_PATH);
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException ex) {
-        }
+        // try {
+        //     Thread.sleep(5000);
+        // } catch (InterruptedException ex) {
+        // }
 
-        System.out.println("replacing custom splash with original one");
+        // System.out.println("replacing custom splash with original one");
 
-        fileManager.RevertToDefaultSplash();
+        // fileManager.RevertToDefaultSplash();
 
     }
 

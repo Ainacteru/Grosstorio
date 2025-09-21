@@ -7,8 +7,7 @@ public class FileManager {
         if(Filepaths.splashExists()) {
             System.out.println(Filepaths.GROSSTORIO_SPLASH_SCREEN_PATH);
         }
-        else 
-        {
+        else {
             System.out.println("No 'splash.png' found when searching for /splash/splash.png");
         }
     }
@@ -24,17 +23,16 @@ public class FileManager {
             Files.copy(_newSplash, _newSplashCopy, StandardCopyOption.REPLACE_EXISTING);
             Files.copy(_splashToReplace, _splashToReplace_copy, StandardCopyOption.REPLACE_EXISTING);
 
-            System.out.println("Made a copy of " + _newSplash + "and made a backup of " + _splashToReplace);
             System.out.println();
+            System.out.println("Made a copy of " + _newSplash + "and made a backup of " + _splashToReplace);
 
             Files.createDirectories(_splashToReplace.getParent());
             Files.move(_newSplashCopy, _splashToReplace, StandardCopyOption.REPLACE_EXISTING);
 
-            System.out.println("Replaced original splash with " + _newSplashCopy);
             System.out.println();
+            System.out.println("Replaced original splash with " + _newSplashCopy);
 
         } catch (IOException ex) {
-            ex.printStackTrace();
         }
     }
 
@@ -44,6 +42,9 @@ public class FileManager {
 
         try {
             Files.delete(Filepaths.FACTORIO_SPLASH_SCREEN_PATH_COPY);
+
+            System.out.println();
+            System.out.println("DELETED " + Filepaths.FACTORIO_SPLASH_SCREEN_PATH_COPY);
             
         } catch (IOException ex) {
         }
