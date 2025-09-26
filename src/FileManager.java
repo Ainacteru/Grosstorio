@@ -3,15 +3,6 @@ import java.nio.file.*;
 
 public class FileManager {
 
-    public void FindFiles() {
-        if(Filepaths.splashExists()) {
-            System.out.println(Filepaths.GROSSTORIO_SPLASH_SCREEN_PATH);
-        }
-        else {
-            System.out.println("No 'splash.png' found when searching for /splash/splash.png");
-        }
-    }
-
     public void ReplaceSplash(Path newSplash, Path SplashToReplace) {
         Path _newSplash = newSplash;
         Path _newSplashCopy = newSplash.getParent().resolve("splash-screen-image.png"); // default name of factorio splash screen
@@ -36,15 +27,38 @@ public class FileManager {
         }
     }
 
-    //replace the splash screen, then delete it -- i could also just mv it to rename it and replace it but i'll do this for simplicity
-    public void RevertToDefaultSplash() {
-        ReplaceSplash(Filepaths.FACTORIO_SPLASH_SCREEN_PATH_COPY, Filepaths.FACTORIO_SPLASH_SCREEN_PATH);
+    public void AddMod(Path mods, Path FACTORIO_PATH) {
+        Path _modsToTransfer = mods;
+        Path destination = FACTORIO_PATH;
 
         try {
-            Files.delete(Filepaths.FACTORIO_SPLASH_SCREEN_PATH_COPY);
+            Files.write(Filepaths.MODS_TXT, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (IOException ex) {}
+        //clear then write
+
+        try {
+            DirectoryStream<Path> _mods = Files.newDirectoryStream(_modsToTransfer, "*.zip");
+            for (Path mod : _mods) {
+                //System.out.println("Found: " + mod.getFileName());
+
+                Files.write(Filepaths.MODS_TXT, (mod.getFileName().toString() + System.lineSeparator()).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+
+                System.out.println("Added " + mod.getFileName() + " to " + Filepaths.MODS_TXT.toAbsolutePath());
+            }
+
+        } catch (IOException ex) {}
+
+    }
+
+    //replace the splash screen, then delete it -- i could also just mv it to rename it and replace it but i'll do this for simplicity
+    public void RevertToDefaultSplash() {
+        ReplaceSplash(Filepaths.Factorio.FACTORIO_SPLASH_SCREEN_PATH_BACKUP, Filepaths.Factorio.FACTORIO_SPLASH_SCREEN_PATH);
+
+        try {
+            Files.delete(Filepaths.Factorio.FACTORIO_SPLASH_SCREEN_PATH_BACKUP);
 
             System.out.println();
-            System.out.println("DELETED " + Filepaths.FACTORIO_SPLASH_SCREEN_PATH_COPY);
+            System.out.println("DELETED " + Filepaths.Factorio.FACTORIO_SPLASH_SCREEN_PATH_BACKUP);
             
         } catch (IOException ex) {
         }

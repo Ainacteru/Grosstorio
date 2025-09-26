@@ -12,8 +12,7 @@ public class Main {
     }
 
     private void Run() {
-
-        Filepaths.start();
+        fileManager.AddMod(Filepaths.Grosstorio.GROSSTORIO_MODS_PATH, Filepaths.Grosstorio.GROSSTORIO_MODS_PATH);
         
         // System.out.println("replacing original splash with custom one");
 
