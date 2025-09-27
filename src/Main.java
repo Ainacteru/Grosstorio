@@ -12,8 +12,16 @@ public class Main {
     }
 
     private void Run() {
-        fileManager.AddMod(Filepaths.Grosstorio.GROSSTORIO_MODS_PATH, Filepaths.Grosstorio.GROSSTORIO_MODS_PATH);
+        //fileManager.AddMod(Filepaths.Grosstorio.GROSSTORIO_MODS_PATH, Filepaths.Grosstorio.GROSSTORIO_MODS_PATH);
+        fileManager.AddMod(Filepaths.Grosstorio.GROSSTORIO_MODS_PATH, Filepaths.Factorio.FACTORIO_MODS_PATH);
+
+        try {
+        Thread.sleep(1000);
+        } catch (InterruptedException e) {}
         
+        fileManager.RemoveGrosstorioMods();
+
+
         // System.out.println("replacing original splash with custom one");
 
         // fileManager.ReplaceSplash(Filepaths.GROSSTORIO_SPLASH_SCREEN_PATH, Filepaths.FACTORIO_SPLASH_SCREEN_PATH);

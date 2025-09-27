@@ -26,6 +26,7 @@ public class Filepaths {
 
         public static final Path FACTORIO_SPLASH_SCREEN_PATH_BACKUP = Paths.get(System.getProperty("user.dir")).getParent().resolve("factorio").resolve("data").resolve("core").resolve("graphics").resolve("splash-screen-image-default-backup.png");
 
+        public static final Path FACTORIO_MODS_PATH = Paths.get(System.getProperty("user.dir")).getParent().resolve("factorio").resolve("mods");
 
 
     }

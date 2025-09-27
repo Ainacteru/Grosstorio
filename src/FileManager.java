@@ -1,5 +1,7 @@
+import java.io.Console;
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.List;
 
 public class FileManager {
 
@@ -31,6 +33,8 @@ public class FileManager {
         Path _modsToTransfer = mods;
         Path destination = FACTORIO_PATH;
 
+
+
         try {
             Files.write(Filepaths.MODS_TXT, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
         } catch (IOException ex) {}
@@ -39,14 +43,41 @@ public class FileManager {
         try {
             DirectoryStream<Path> _mods = Files.newDirectoryStream(_modsToTransfer, "*.zip");
             for (Path mod : _mods) {
-                //System.out.println("Found: " + mod.getFileName());
+                Path modToMove = mod;
 
+                //System.out.println("Found: " + mod.getFileName());
                 Files.write(Filepaths.MODS_TXT, (mod.getFileName().toString() + System.lineSeparator()).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
 
                 System.out.println("Added " + mod.getFileName() + " to " + Filepaths.MODS_TXT.toAbsolutePath());
+
+
+                Files.copy(mod, Filepaths.Factorio.FACTORIO_MODS_PATH.resolve(mod.getFileName()), StandardCopyOption.REPLACE_EXISTING);
+                //Files.move(modToMove, mod, options)
+                //Files.c
             }
 
         } catch (IOException ex) {}
+
+    }
+
+    public void RemoveGrosstorioMods() {
+        try {
+            Path mods = Filepaths.MODS_TXT;
+            
+            List<String> txt = Files.readAllLines(mods);
+
+            for (String line : txt) {
+                //System.out.println(line);
+                Path mod = Filepaths.Factorio.FACTORIO_MODS_PATH.resolve(line);
+
+                System.out.println("found mod to delete: " + mod);
+
+                Files.delete(mod);
+
+            }      
+            } catch (IOException ex) {
+        }
+
 
     }
 
