@@ -1,3 +1,4 @@
+
 public class Main {
 
     FileManager fileManager;
@@ -7,34 +8,34 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        Filepaths.SetupFilepaths();
+        
         Main program = new Main();
+        program.CloseGrosstorio();
         program.Run();
     }
 
     private void Run() {
-        //fileManager.AddMod(Filepaths.Grosstorio.GROSSTORIO_MODS_PATH, Filepaths.Grosstorio.GROSSTORIO_MODS_PATH);
-        fileManager.AddMod(Filepaths.Grosstorio.GROSSTORIO_MODS_PATH, Filepaths.Factorio.FACTORIO_MODS_PATH);
+        fileManager.ReplaceSplash(Filepaths.Grosstorio.getSplashPath(), Filepaths.Factorio.getSplashScreenPath());
+        System.out.println("Added splash screen");
 
-        try {
-        Thread.sleep(1000);
-        } catch (InterruptedException e) {}
-        
-        fileManager.RemoveGrosstorioMods();
+        fileManager.AddMod(Filepaths.Grosstorio.getModsPath());
+        System.out.println("Added all mods");
+        System.out.println();
 
+        System.out.println("Starting game...");
+        fileManager.RunGame();
 
-        // System.out.println("replacing original splash with custom one");
+    }
 
-        // fileManager.ReplaceSplash(Filepaths.GROSSTORIO_SPLASH_SCREEN_PATH, Filepaths.FACTORIO_SPLASH_SCREEN_PATH);
-
-        // try {
-        //     Thread.sleep(5000);
-        // } catch (InterruptedException ex) {
-        // }
-
-        // System.out.println("replacing custom splash with original one");
-
-        // fileManager.RevertToDefaultSplash();
-
+    public void CloseGrosstorio() {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println();
+            System.out.println("App is closing. Cleaning up...");
+            
+            fileManager.RevertToDefaultSplash();
+            fileManager.RemoveGrosstorioMods();
+        }));
     }
 
 }
