@@ -107,9 +107,7 @@ public class Filepaths {
         }
 
         public static Path getModsPath() {
-            return FACTORIO_PATH.getParent()
-                                .resolve("factorio")
-                                .resolve("mods");
+            return FACTORIO_PATH.resolve("mods"); //GODDAMMIT WHY
         }
     }
 

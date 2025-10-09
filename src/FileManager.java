@@ -79,6 +79,8 @@ public class FileManager {
     public void RevertToDefaultSplash() {
         Path backup = Filepaths.Factorio.getSplashScreenBackupPath();
 
+        ReplaceSplash(backup, Filepaths.Factorio.getSplashScreenPath());
+
         try {
             Files.delete(backup);
             System.out.println("Deleted backup: " + backup);
