@@ -23,5 +23,6 @@
 hs_err_pid*
 replay_pid*
 
-# Test Folder
+# Test Folder and backup stuff
 Factorio/
+splash-screen-image.png
