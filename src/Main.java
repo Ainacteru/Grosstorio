@@ -24,6 +24,12 @@ public class Main {
         System.out.println();
 
         System.out.println("Starting game...");
+
+        // try {
+        //     //Thread.sleep(10000);
+        // } catch (InterruptedException ex) {
+        // }
+
         fileManager.RunGame();
 
     }
@@ -32,8 +38,10 @@ public class Main {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println();
             System.out.println("App is closing. Cleaning up...");
+            System.out.println();
             
             fileManager.RevertToDefaultSplash();
+            System.out.println();
             fileManager.RemoveGrosstorioMods();
         }));
     }
